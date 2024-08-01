@@ -4,6 +4,15 @@
         {{ with .services }}
             <!-- Google Analytics -->
             {{ with .google }}
+                <!-- Google tag (gtag.js) -->
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-9L80GFVDLN"></script>
+                <script>
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag(){dataLayer.push(arguments);}
+                  gtag('js', new Date());
+                
+                  gtag('config', 'G-9L80GFVDLN');
+                </script>
                 {{ $privacyConfig:= dict (slice "Site" "Config" "Privacy" "GoogleAnalytics") $.Site.Config.Privacy.GoogleAnalytics }}
                 {{ $analyticsConfig := dict (slice "Site" "Config" "Services" "GoogleAnalytics" "ID") .id }}
                 {{ template "_internal/google_analytics.html" (merge $privacyConfig $analyticsConfig) }}
